@@ -155,12 +155,19 @@ class LinkedList:
         Raises Empty exception if the list is empty."""
         if self.is_empty():
             raise Empty("List is empty")
+        if self._length == 1:
+            last_element = self.last()
+            self._head = None
+            self._tail = None
+            self._length -= 1
+            return last_element
         last_node_idx = self._length - 1
         new_last_node = self._getNode(last_node_idx - 1)
         new_last_node._next = None
         self._tail = new_last_node
+        last_element = self.last()
         self._length -= 1
-        return self.last()
+        return last_element
 
     def delete(self, loc):
         """ Remove the element e at location loc; return e
@@ -168,14 +175,15 @@ class LinkedList:
         Raises Empty exception if the list is empty."""
         if self.is_empty():
             raise Empty("List is empty")
-        if loc > self._length:
+        if loc >= self._length:
             raise IndexError("Out of bounds")
+        delete_number = self.getData(loc)
         for location in range(self._length):
             if location == loc:
                 current_node = self._getNode(location - 1)
                 current_node._next = current_node._next._next
                 self._length -= 1
-                return self.getData(loc)
+                return delete_number
 
     def findElt(self, e):
         """ Returns location where element e is stored
@@ -310,6 +318,60 @@ def main():
         print("Write your own test cases here ")
 
         # TEST CASES HERE
+        # link_list.append(15)
+        # print(str(link_list))
+        # link_list.deleteLast()
+        # print(str(link_list))
+
+        # link_list.prepend(15)
+        # print(str(link_list))
+        # link_list.deleteFirst()
+        # print(str(link_list))
+
+        link_list.append(7)
+        link_list.prepend(150)
+        link_list.append(19)
+        link_list.prepend(0)
+        link_list.prepend(69)
+        link_list.append(3)
+        link_list.prepend(96)
+        link_list.prepend(777)
+        link_list.prepend(123)
+        link_list.append(16)
+        link_list.prepend(2)
+        print(str(link_list))
+        print("Length:", end=" ")
+        print(len(link_list), "\n")
+
+        link_list.insert(6969, 4)
+        link_list.insert(10, 4)
+        print(str(link_list))
+        print("Length:", end=" ")
+        print(len(link_list), "\n")
+
+        link_list.deleteFirst()
+        link_list.deleteLast()
+        link_list.deleteFirst()
+        link_list.deleteFirst()
+        link_list.deleteFirst()
+        link_list.deleteLast()
+        print(str(link_list))
+        print("Length:", end=" ")
+        print(len(link_list), "\n")
+
+        print("First: ", link_list.first())
+        print("Last: ", link_list.last())
+
+        link_list.deleteElt(10)
+        link_list.deleteElt(7)
+        print(str(link_list))
+        print("Length:", end=" ")
+        print(len(link_list), "\n")
+
+        print(link_list.delete(2))
+        print(str(link_list))
+        print("Length:", end=" ")
+        print(len(link_list), "\n")
 
 
 if __name__ == "__main__":
