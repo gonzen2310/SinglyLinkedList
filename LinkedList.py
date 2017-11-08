@@ -129,6 +129,16 @@ class LinkedList:
         if loc == self._length:
             self.append(e)
         new_node = self._Node(e, None)
+        prev_node = self._Node(None, None)
+        current_node = self._head
+        for location in range(self._length):
+            if location == loc:
+                prev_node._next = new_node
+                new_node._next = current_node
+                self._length += 1
+                break
+            prev_node = current_node
+            current_node = current_node._next
 
     def deleteFirst(self):
         """ Remove the element e at the head of the list; return e
@@ -145,7 +155,11 @@ class LinkedList:
         Raises Empty exception if the list is empty."""
         if self.is_empty():
             raise Empty("List is empty")
-
+        last_node_idx = self._length - 1
+        new_last_node = self._getNode(last_node_idx - 1)
+        new_last_node._next = None
+        self._tail = new_last_node
+        self._length -= 1
         return self.last()
 
     def delete(self, loc):
@@ -210,21 +224,7 @@ class LinkedList:
 
 
 def main():
-    link_list = LinkedList()
-    link_list.append(10)
-    link_list.append(23)
-    link_list.append(510)
-    link_list.append(96)
-    link_list.append(7)
-    link_list.prepend(7)
-    link_list.prepend(123)
-    link_list.prepend(68)
-    link_list.prepend(72)
-    link_list.prepend(15)
-
-    print(str(link_list))
-    print(link_list.deleteElt(15))
-    print(str(link_list))
+    print()
 
 
 if __name__ == "__main__":
