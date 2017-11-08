@@ -225,85 +225,91 @@ class LinkedList:
 
 def main():
     link_list = LinkedList()
-    while True:
-        operation = input("Enter an operation:\t\n1. Length\t\n2. First\t\n3. Last\t\n4. Get Data"
-                          "\t\n5. Append\t\n6. Prepend\t\n7. Insert\t\n8. Delete First\t\n9. Delete Last"
-                          "\t\n10. Delete\t\n11. Find Element\t\n12. Delete Element\t\n13. Print list: ")
-        if operation == "1":
-            print(len(link_list))
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "2":
-            print(link_list.first())
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "3":
-            print(link_list.last())
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "4":
-            location = int(input("Enter location:"))
-            print(link_list.getData(location))
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "5":
-            element = int(input("Enter element: "))
-            link_list.append(element)
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "6":
-            element = int(input("Enter element: "))
-            link_list.prepend(element)
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "7":
-            element = int(input("Enter element: "))
-            location = int(input("Enter location:"))
-            link_list.insert(element, location)
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "8":
-            print(link_list.deleteFirst())
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "9":
-            print(link_list.deleteLast())
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "10":
-            location = int(input("Enter location:"))
-            print(link_list.delete(location))
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "11":
-            element = int(input("Enter element: "))
-            print(link_list.findElt(element))
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "12":
-            element = int(input("Enter element: "))
-            link_list.deleteElt(element)
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        elif operation == "13":
-            print(str(link_list))
-            more_operation = input("Do you want to perform other operation?(y/n): ")
-            if more_operation == "n" or more_operation != "y":
-                break
-        else:
-            print("Input a valid number")
+    test = input("Choose test mode: \n\t1. Interactive\n\t2. Hardcoded: ")
+    if test == "1":
+        while True:
+            operation = input("Enter an operation:\t\n1. Length\t\n2. First\t\n3. Last\t\n4. Get Data"
+                              "\t\n5. Append\t\n6. Prepend\t\n7. Insert\t\n8. Delete First\t\n9. Delete Last"
+                              "\t\n10. Delete\t\n11. Find Element\t\n12. Delete Element\t\n13. Print list: ")
+            if operation == "1":
+                print(len(link_list))
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "2":
+                print(link_list.first())
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "3":
+                print(link_list.last())
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "4":
+                location = int(input("Enter location:"))
+                print(link_list.getData(location))
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "5":
+                element = int(input("Enter element: "))
+                link_list.append(element)
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "6":
+                element = int(input("Enter element: "))
+                link_list.prepend(element)
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "7":
+                element = int(input("Enter element: "))
+                location = int(input("Enter location:"))
+                link_list.insert(element, location)
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "8":
+                print(link_list.deleteFirst())
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "9":
+                print(link_list.deleteLast())
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "10":
+                location = int(input("Enter location:"))
+                print(link_list.delete(location))
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "11":
+                element = int(input("Enter element: "))
+                print(link_list.findElt(element))
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "12":
+                element = int(input("Enter element: "))
+                link_list.deleteElt(element)
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            elif operation == "13":
+                print(str(link_list))
+                more_operation = input("Do you want to perform other operation?(y/n): ")
+                if more_operation == "n" or more_operation != "y":
+                    break
+            else:
+                print("Input a valid number")
+    else:
+        print("Write your own test cases here ")
+
+        # TEST CASES HERE
 
 
 if __name__ == "__main__":
