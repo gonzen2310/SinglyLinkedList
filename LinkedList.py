@@ -75,13 +75,23 @@ class LinkedList:
     def _getNode(self, loc):
         """ Returns the _Node object at location loc.
         Raises an IndexError if loc is invalid location."""
+        if self.is_empty():
+            raise Empty("List is Empty")
+        if loc > self._length - 1:
+            raise IndexError("Out of Bounds")
+        node = self._head
+        for index in range(self._length):
+            if index == loc:
+                return node
+            node = node._next
 
     def getData(self, loc):
         """ Returns the data element stored at location loc.
         Raises an IndexError if loc is invalid location."""
-        if self.is_empty() or loc >= self._length:
-            raise Empty("Invalid location")
-
+        if self.is_empty() or loc > self._length:
+            raise Empty("Index out of bounds")
+        node = self._getNode(loc)
+        return node._element
 
     def append(self, e):
         """ Add the element e to the end of the list."""
@@ -113,7 +123,12 @@ class LinkedList:
         if loc = -1, call on method prepend to add at the front;
         if loc = self.length, call on method append to add at end """
         if loc > self._length:
-            raise IndexError
+            raise IndexError("Out of Bounds")
+        if loc == -1:
+            self.prepend(e)
+        if loc == self._length:
+            self.append(e)
+        new_node = self._Node(e, None)
 
     def deleteFirst(self):
         """ Remove the element e at the head of the list; return e
@@ -130,48 +145,51 @@ class LinkedList:
         Raises Empty exception if the list is empty."""
         if self.is_empty():
             raise Empty("List is empty")
-        node = self._head
-        while node._next != self._tail:
-            node = node._next
-            node._next = None
-            del_last = self._tail._element
-            self._tail = node
-            return del_last
+
+        return self.last()
 
     def delete(self, loc):
         """ Remove the element e at location loc; return e
         Raises an IndexError if loc is invalid location.
         Raises Empty exception if the list is empty."""
         if self.is_empty():
-            raise Empty('Queue is empty')
+            raise Empty("List is empty")
+        if loc > self._length:
+            raise IndexError("Out of bounds")
+        for location in range(self._length):
+            if location == loc:
+                current_node = self._getNode(location - 1)
+                current_node._next = current_node._next._next
+                self._length -= 1
+                return self.getData(loc)
 
     def findElt(self, e):
         """ Returns location where element e is stored
         Raises Empty exception if the list is empty."""
         if self.is_empty():
             raise Empty("List is empty")
-
-    # n - 1 == current
+        for find in range(self._length):
+            if self.getData(find) == e:
+                return find
+        print("Element not found")
+        return -1
 
     def deleteElt(self, e):
         """ Finds the node where element e is stored and removes
         that node."""
-        temp = self._head
-        if temp is not None:
-            if temp._element == e:
-                self._head = temp._next
-                temp = None
-                return
-        while temp is not None:
-            if temp._element == e:
+        if self.is_empty():
+            raise Empty("List is empty")
+        idx_node = self.findElt(e)
+        for location in range(self._length):
+            if idx_node == 0:
+                self.deleteFirst()
                 break
-            prev = temp
-            temp = temp._next
-            if temp is None:
-                return
-            prev._next = temp._next
-            temp = None
-        self._length -= 1
+            elif location == idx_node:
+                current_node = self._getNode(location - 1)
+                current_node._next = current_node._next._next
+                self._length -= 1
+                break
+            pass
 
     def __str__(self):
         """ Return string representation of the linked list."""
@@ -187,19 +205,26 @@ class LinkedList:
         while node:
             string_list += str(node._element) + ", "
             node = node._next
+        string_list = string_list[:-2]
         return string_list
-
-
 
 
 def main():
     link_list = LinkedList()
-    link_list.append(20)
+    link_list.append(10)
+    link_list.append(23)
+    link_list.append(510)
+    link_list.append(96)
+    link_list.append(7)
+    link_list.prepend(7)
+    link_list.prepend(123)
+    link_list.prepend(68)
+    link_list.prepend(72)
     link_list.prepend(15)
-    link_list.append(32)
 
     print(str(link_list))
-
+    print(link_list.deleteElt(15))
+    print(str(link_list))
 
 
 if __name__ == "__main__":
